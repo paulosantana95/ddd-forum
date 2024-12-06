@@ -1,8 +1,8 @@
 import { Either, left, right } from '@/core/either'
 import { ResourceLimits } from 'worker_threads'
 import { QuestionsRepository } from '../repositories/questions-repository'
-import { NotAllowedError } from './errors/not-allowed-error'
-import { ResourceNotFoundError } from './errors/resource-not-found-error'
+import { NotAllowedError } from '@/core/errors/errors/not-allowed-error'
+import { ResourceNotFoundError } from '@/core/errors/errors/resource-not-found-error'
 
 interface DeleteQuestionUseCaseRequest {
   questionId: string
