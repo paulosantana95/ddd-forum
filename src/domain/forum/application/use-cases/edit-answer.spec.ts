@@ -1,6 +1,6 @@
 import { InMemoryAnswersRepository } from 'test/repository/in-memory-answers-repository'
 import { makeAnswer } from 'test/factories/make-answer'
-import { UniqueEntityId } from '@/core/entities/unique-entity-id'
+import { UniqueEntityID } from '@/core/entities/unique-entity-id'
 import { EditAnswerUseCase } from './edit-answer'
 import { NotAllowedError } from '@/core/errors/errors/not-allowed-error'
 import { InMemoryAnswerAttachmentsRepository } from 'test/repository/in-memory-answer-attachments-repository'
@@ -27,9 +27,9 @@ describe('Edit Answer Use Case', () => {
   it('should be able to edit a answer', async () => {
     const newAnswer = makeAnswer(
       {
-        authorId: new UniqueEntityId('author-id'),
+        authorId: new UniqueEntityID('author-id'),
       },
-      new UniqueEntityId('answer-id'),
+      new UniqueEntityID('answer-id'),
     )
 
     await inMemoryAnswersRepository.create(newAnswer)
@@ -37,11 +37,11 @@ describe('Edit Answer Use Case', () => {
     inMemoryAnswerAttachmentsRepository.items.push(
       makeAnswerAttachment({
         answerId: newAnswer.id,
-        attachmentId: new UniqueEntityId('1')
+        attachmentId: new UniqueEntityID('1')
       }),
       makeAnswerAttachment({
         answerId: newAnswer.id,
-        attachmentId: new UniqueEntityId('2')
+        attachmentId: new UniqueEntityID('2')
       })
     )
 
@@ -62,8 +62,8 @@ describe('Edit Answer Use Case', () => {
 
     expect(inMemoryAnswersRepository.items[0].attachments.currentItems).toEqual(
       [
-        expect.objectContaining({ attachmentId: new UniqueEntityId('1') }),
-        expect.objectContaining({ attachmentId: new UniqueEntityId('3') }),
+        expect.objectContaining({ attachmentId: new UniqueEntityID('1') }),
+        expect.objectContaining({ attachmentId: new UniqueEntityID('3') }),
       ]
     )
   })
@@ -71,9 +71,9 @@ describe('Edit Answer Use Case', () => {
   it('should not be able to edit a answer from another user', async () => {
     const newAnswer = makeAnswer(
       {
-        authorId: new UniqueEntityId('author-1'),
+        authorId: new UniqueEntityID('author-1'),
       },
-      new UniqueEntityId('answer-id'),
+      new UniqueEntityID('answer-id'),
     )
 
     await inMemoryAnswersRepository.create(newAnswer)

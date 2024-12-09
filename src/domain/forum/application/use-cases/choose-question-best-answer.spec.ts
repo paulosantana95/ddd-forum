@@ -1,6 +1,6 @@
 import { InMemoryAnswersRepository } from 'test/repository/in-memory-answers-repository'
 import { makeAnswer } from 'test/factories/make-answer'
-import { UniqueEntityId } from '@/core/entities/unique-entity-id'
+import { UniqueEntityID } from '@/core/entities/unique-entity-id'
 import { InMemoryQuestionsRepository } from 'test/repository/in-memory-questions-repository'
 import { ChooseQuestionBestAnswerUseCase } from './choose-question-best-answer'
 import { makeQuestion } from 'test/factories/make-question'
@@ -52,7 +52,7 @@ describe('Choose Question Best Answer', () => {
 
   it('should not be able to choose another user question best answer', async () => {
     const question = makeQuestion({
-      authorId: new UniqueEntityId('author-1'),
+      authorId: new UniqueEntityID('author-1'),
     })
     const answer = makeAnswer({
       questionId: question.id,
